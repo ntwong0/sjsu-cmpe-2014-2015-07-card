@@ -1,0 +1,9 @@
+2015 04 17
+	x repair dev env
+		x Reinstall Linux Mint Installation
+	x Reinstall NodeJS
+	x Install Git
+	x Setup Git
+		x Create Git Repo [github:sjsu-cmpe-2014-2015-07-card]
+		x clone repo to dev env
+	create backup image
