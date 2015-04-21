@@ -31,7 +31,11 @@ along with this code.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
 from breezyslam.robots import WheeledRobot
+'''
+#nw-cm-1-in-1
 from breezyslam.components import URG04LX
+'''
+from breezyslam.components import XV11
 
 import math
 
@@ -66,21 +70,30 @@ def load_data(datadir, dataset):
         toks = s.split()[0:-1] # ignore ''
 
         odometry = (int(toks[0]), int(toks[2]), int(toks[3]))
-                        
+'''
+#nw-cm-1-in-1                        
         lidar = [int(tok) for tok in toks[24:]]
-
+'''
+        lidar = [int(tok) for tok in toks[0:]]
         scans.append(lidar)
         odometries.append(odometry)
         
     fd.close()
         
     return scans, odometries
-
+'''
+#nw-cm-5-in-5
 class MinesLaser(URG04LX):
     
     def __init__(self):
         
         URG04LX.__init__(self, 70, 145)
+'''
+class MinesLaser(XV11):
+    
+    def __init__(self):
+        
+        XV11.__init__(self, 70, 0)
         
 # Class for MinesRover custom robot ------------------------------------------
 

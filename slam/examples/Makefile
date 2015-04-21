@@ -24,7 +24,9 @@ JAVADIR = ../java/edu/wlu/cs/levy/breezyslam
 VIEWER = eog
 
 # Set these for different experiments
-DATASET = exp1
+# nw-cm-1-in-1
+# DATASET = exp1
+DATASET = data.dat
 USE_ODOMETRY = 0
 RANDOM_SEED  = 9999
 
