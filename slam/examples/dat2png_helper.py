@@ -31,9 +31,13 @@ along with this code.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
 from breezyslam.robots import WheeledRobot
-from breezyslam.components import URG04LX
+#?1
+#from breezyslam.components import URG04LX
+from breezyslam.components import XV11
 
 import math
+#+1
+import random
 
 
 # Method to load all from file ------------------------------------------------
@@ -63,23 +67,36 @@ def load_data(datadir, dataset):
         if len(s) == 0:
             break       
             
-        toks = s.split()[0:-1] # ignore ''
+#?1
+#        toks = s.split()[0:-1] # ignore ''
+        toks = s.split()
 
         odometry = (int(toks[0]), int(toks[2]), int(toks[3]))
-        lidar = [int(tok) for tok in toks[24:]]
-
+#?1
+#        lidar = [int(tok) for tok in toks[24:]]
+        lidar = [int(tok) for tok in toks[0:]]
+#+2
+        for x in range(0, len(lidar)):
+            lidar[x] = lidar[x] * 350
+#~+1            
+#            print lidar[x]
         scans.append(lidar)
         odometries.append(odometry)
         
     fd.close()
         
     return scans, odometries
-
-class MinesLaser(URG04LX):
+#?5
+#class MinesLaser(URG04LX):
+#    
+#    def __init__(self):
+#        
+#        URG04LX.__init__(self, 70, 145)
+class MinesLaser(XV11):
     
     def __init__(self):
         
-        URG04LX.__init__(self, 70, 145)
+        XV11.__init__(self, 0, 0)
         
 # Class for MinesRover custom robot ------------------------------------------
 

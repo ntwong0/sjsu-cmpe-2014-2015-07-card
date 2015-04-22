@@ -26,16 +26,20 @@ VIEWER = eog
 # Set these for different experiments
 # nw-cm-1-in-1
 # DATASET = exp1
-DATASET = data.dat
+DATASET = data
 USE_ODOMETRY = 0
 RANDOM_SEED  = 9999
 
 all: log2pgm Log2PGM.class
 
 pytest: 
-	./log2pgm.py $(DATASET) $(USE_ODOMETRY) $(RANDOM_SEED)
-	cp $(DATASET).pgm ../../webgui/images/$(DATASET).pgm
-	$(VIEWER) $(DATASET).pgm ../../webgui/public/$(DATASET).pgm
+#?2
+#	./log2pgm.py $(DATASET) $(USE_ODOMETRY) $(RANDOM_SEED)
+#	cp $(DATASET).pgm ../../webgui/images/$(DATASET).pgm
+	./log2png.py $(DATASET) $(USE_ODOMETRY) $(RANDOM_SEED)
+	cp $(DATASET).png ../../webgui/images/$(DATASET).png
+#-1
+#	$(VIEWER) $(DATASET).pgm ../../webgui/public/$(DATASET).pgm
 
 cpptest: log2pgm 
 	./log2pgm $(DATASET) $(USE_ODOMETRY) $(RANDOM_SEED)
