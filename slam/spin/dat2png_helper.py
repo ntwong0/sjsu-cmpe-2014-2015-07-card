@@ -56,6 +56,7 @@ def load_data(datadir, dataset):
     
     fd = open(filename, 'rt')
     
+    badScanCount = 0
     timestamps = []
     scans = []
     odometries = []
@@ -75,15 +76,23 @@ def load_data(datadir, dataset):
 #?1
 #        lidar = [int(tok) for tok in toks[24:]]
         lidar = [int(tok) for tok in toks[0:]]
-#+2
-        for x in range(0, len(lidar)):
-            lidar[x] = lidar[x] * 350
+#~+2
+#        for x in range(0, len(lidar)):
+#            lidar[x] = lidar[x] * 350
 #~+1            
 #            print lidar[x]
-        scans.append(lidar)
+#+4
+        if len(lidar) != 360:
+            print len(lidar)
+            badScanCount = badScanCount + 1
+        else:
+#>1
+            scans.append(lidar)
         odometries.append(odometry)
         
     fd.close()
+#+1
+    print 'There are {} invalid scans in the data file.'.format(badScanCount)
         
     return scans, odometries
 #?5
