@@ -60,37 +60,42 @@ import Image
 def main():
     seed = 9999
     runCount = 0
+    dequeueCount = 0
     slam = RMHC_SLAM(MinesLaser(), MAP_SIZE_PIXELS, MAP_SIZE_METERS, random_seed=seed) \
            if seed \
            else Deterministic_SLAM(MinesLaser(), MAP_SIZE_PIXELS, MAP_SIZE_METERS)
     trajectory = []
-    while (q.empty() == False):
-            slam.update(q.get())
-            x_mm, y_mm, theta_degrees = slam.getpos()    
-            trajectory.append((x_mm, y_mm))
+    while dequeueCount < 100:
+        if q.empty() == False:
+            while (q.empty() == False):
+                    slam.update(q.get())
+                    print "%i" %dequeueCount
+                    dequeueCount = dequeueCount + 1
+                    x_mm, y_mm, theta_degrees = slam.getpos()    
+                    trajectory.append((x_mm, y_mm))
+                                    
+            # Create a byte array to receive the computed maps
+            mapbytes = bytearray(MAP_SIZE_PIXELS * MAP_SIZE_PIXELS)
+            
+            # Get final map    
+            slam.getmap(mapbytes)
+            
+            # Put trajectory into map as black pixels
+            for coords in trajectory:
+                        
+                    x_mm, y_mm = coords
+                                           
+                    x_pix = mm2pix(x_mm)
+                    y_pix = mm2pix(y_mm)
+                                                                                                          
+                    mapbytes[y_pix * MAP_SIZE_PIXELS + x_pix] = 0;
                             
-    # Create a byte array to receive the computed maps
-    mapbytes = bytearray(MAP_SIZE_PIXELS * MAP_SIZE_PIXELS)
-    
-    # Get final map    
-    slam.getmap(mapbytes)
-    
-    # Put trajectory into map as black pixels
-    for coords in trajectory:
-                
-            x_mm, y_mm = coords
-                                   
-            x_pix = mm2pix(x_mm)
-            y_pix = mm2pix(y_mm)
-                                                                                                  
-            mapbytes[y_pix * MAP_SIZE_PIXELS + x_pix] = 0;
-                    
-    # Save map and trajectory as PNG file
-    image = Image.frombuffer('L', (MAP_SIZE_PIXELS, MAP_SIZE_PIXELS), mapbytes, 'raw', 'L', 0, 1)
-    #image.save('map%i.png' %runCount)
-    image.save("map" + str(runCount) + ".png")
-    runCount = runCount + 1
-
+            # Save map and trajectory as PNG file
+            image = Image.frombuffer('L', (MAP_SIZE_PIXELS, MAP_SIZE_PIXELS), mapbytes, 'raw', 'L', 0, 1)
+            #image.save('map%i.png' %runCount)
+            image.save("map" + str(dequeueCount) + ".png")
+            print "image generated"
+        
             
 # Helpers ---------------------------------------------------------        
 
