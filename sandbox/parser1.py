@@ -3,8 +3,6 @@
 import Queue
 import serial
 
-global q = Queue.Queue(2048)
-
 def parser():
 
         flag = 0
@@ -13,8 +11,8 @@ def parser():
         lookAhead = 0
         packet = []
 
-        ser = serial.Serial('/dev/ttyMFD1', 921600)
-        #ser = open('testingSerialLog.txt', 'r')
+        #ser = serial.Serial('/dev/ttyMFD1', 921600)
+        ser = open('testingSerialLog.txt', 'r')
 
         while True:
                 word = ser.read(1)
