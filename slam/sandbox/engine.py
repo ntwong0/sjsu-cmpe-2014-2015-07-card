@@ -41,7 +41,7 @@ Change log:
 
 # Map size, scale
 MAP_SIZE_PIXELS          = 800
-MAP_SIZE_METERS          =  32
+MAP_SIZE_METERS          =  8
 
 from breezyslam.algorithms import Deterministic_SLAM, RMHC_SLAM
 from breezyslam.components import Laser
