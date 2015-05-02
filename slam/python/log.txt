@@ -1,0 +1,35 @@
+running install
+running build
+running build_py
+creating build
+creating build/lib.linux-i686-2.7
+creating build/lib.linux-i686-2.7/breezyslam
+copying breezyslam/components.py -> build/lib.linux-i686-2.7/breezyslam
+copying breezyslam/algorithms.py -> build/lib.linux-i686-2.7/breezyslam
+copying breezyslam/robots.py -> build/lib.linux-i686-2.7/breezyslam
+copying breezyslam/__init__.py -> build/lib.linux-i686-2.7/breezyslam
+running build_ext
+building 'pybreezyslam' extension
+creating build/temp.linux-i686-2.7
+creating build/c
+gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python2.7 -c pybreezyslam.c -o build/temp.linux-i686-2.7/pybreezyslam.o -msse3
+gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python2.7 -c pyextension_utils.c -o build/temp.linux-i686-2.7/pyextension_utils.o -msse3
+gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python2.7 -c ../c/coreslam.c -o build/temp.linux-i686-2.7/../c/coreslam.o -msse3
+gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python2.7 -c ../c/coreslam_i686.c -o build/temp.linux-i686-2.7/../c/coreslam_i686.o -msse3
+gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python2.7 -c ../c/random.c -o build/temp.linux-i686-2.7/../c/random.o -msse3
+gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -I/usr/include/python2.7 -c ../c/ziggurat.c -o build/temp.linux-i686-2.7/../c/ziggurat.o -msse3
+gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-z,relro build/temp.linux-i686-2.7/pybreezyslam.o build/temp.linux-i686-2.7/pyextension_utils.o build/temp.linux-i686-2.7/../c/coreslam.o build/temp.linux-i686-2.7/../c/coreslam_i686.o build/temp.linux-i686-2.7/../c/random.o build/temp.linux-i686-2.7/../c/ziggurat.o -o build/lib.linux-i686-2.7/pybreezyslam.so
+running install_lib
+creating /usr/local/lib/python2.7/dist-packages/breezyslam
+copying build/lib.linux-i686-2.7/breezyslam/components.py -> /usr/local/lib/python2.7/dist-packages/breezyslam
+copying build/lib.linux-i686-2.7/breezyslam/algorithms.py -> /usr/local/lib/python2.7/dist-packages/breezyslam
+copying build/lib.linux-i686-2.7/breezyslam/robots.py -> /usr/local/lib/python2.7/dist-packages/breezyslam
+copying build/lib.linux-i686-2.7/breezyslam/__init__.py -> /usr/local/lib/python2.7/dist-packages/breezyslam
+byte-compiling /usr/local/lib/python2.7/dist-packages/breezyslam/components.py to components.pyc
+byte-compiling /usr/local/lib/python2.7/dist-packages/breezyslam/algorithms.py to algorithms.pyc
+byte-compiling /usr/local/lib/python2.7/dist-packages/breezyslam/robots.py to robots.pyc
+byte-compiling /usr/local/lib/python2.7/dist-packages/breezyslam/__init__.py to __init__.pyc
+running install_egg_info
+Removing /usr/local/lib/python2.7/dist-packages/BreezySLAM-0.1.egg-info
+Writing /usr/local/lib/python2.7/dist-packages/BreezySLAM-0.1.egg-info
+writing list of installed files to 'files.txt'

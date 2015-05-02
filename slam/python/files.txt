@@ -1,10 +1,10 @@
 /usr/local/lib/python2.7/dist-packages/breezyslam/components.py
 /usr/local/lib/python2.7/dist-packages/breezyslam/algorithms.py
-/usr/local/lib/python2.7/dist-packages/breezyslam/__init__.py
 /usr/local/lib/python2.7/dist-packages/breezyslam/robots.py
+/usr/local/lib/python2.7/dist-packages/breezyslam/__init__.py
 /usr/local/lib/python2.7/dist-packages/breezyslam/components.pyc
 /usr/local/lib/python2.7/dist-packages/breezyslam/algorithms.pyc
-/usr/local/lib/python2.7/dist-packages/breezyslam/__init__.pyc
 /usr/local/lib/python2.7/dist-packages/breezyslam/robots.pyc
+/usr/local/lib/python2.7/dist-packages/breezyslam/__init__.pyc
 /usr/local/lib/python2.7/dist-packages/pybreezyslam.so
 /usr/local/lib/python2.7/dist-packages/BreezySLAM-0.1.egg-info

@@ -54,7 +54,7 @@ from sys import argv, exit, stdout
 from time import time
 from parser import *
 
-import Image
+from PIL import Image
 
 
 def main():

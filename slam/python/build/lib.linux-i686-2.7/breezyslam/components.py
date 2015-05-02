@@ -61,4 +61,10 @@ class URG04LX(Laser):
         
         Laser.__init__(self, 682, 10, 240, 4000, detectionMargin, offsetMillimeters)
 
+class XV11(Laser):
+    '''
+    A class for the Neato XV-11
+    '''
+    def __init__(self,detectionMargin = 0, offsetMillimeters = 0):
 
+        Laser.__init__(self, 360, 4, 360, 6000, detectionMargin, offsetMillimeters)
