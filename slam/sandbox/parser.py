@@ -75,8 +75,10 @@ def parser():
                                         packet.append(((ord(temp) << 8) + ord(word)))
                                         temp = ""
                                         flag = 0
-                                        if(q.full() == False):
+                                        if(q.full() == False and len(packet) == 360):
                                                 q.put(packet)
+					else:
+						firstLine = True
                                         #print "Packet size: %i" %len(packet)
 					#print "Queue size: %i" %q.qsize()
                                         packet = []
