@@ -1,10 +1,10 @@
 from thread import *
 import Queue
 import serial
+import time 
 
+start = time.time()
 q = Queue.Queue(2048)
-
-log = open('aLog.txt','w')
 
 def parser():
 
@@ -39,7 +39,7 @@ def parser():
                                         #print hex(ord(word)),
                                 else:
                                         #print hex(lookAhead),
-                                        print "0 0 0 0",                                
+                                        #print "0 0 0 0",                                
                                         for x in range(0,4):
                                                 packet.append(0)
                                         lastIndex = True
@@ -54,7 +54,7 @@ def parser():
                                         #print hex(ord(word)),
                                 else:
                                         #print hex(lookAhead),
-                                        print "0 0 0 0",
+                                        #print "0 0 0 0",
                                         for x in range(0,4):
                                                 packet.append(0)
                                         lastIndex = False
@@ -71,32 +71,36 @@ def parser():
                                 flag = flag + 1
 
                                 if(flag == 10 and lastIndex):
-                                        print (((ord(temp) << 8) + ord(word)))
+                                        #print (((ord(temp) << 8) + ord(word)))
                                         packet.append(((ord(temp) << 8) + ord(word)))
                                         temp = ""
                                         flag = 0
                                         if(q.full() == False):
                                                 q.put(packet)
-                                        print "Packet size: %i" %len(packet)
-					print "Queue size: %i" %q.qsize()
+                                        #print "Packet size: %i" %len(packet)
+					#print "Queue size: %i" %q.qsize()
                                         packet = []
                                         lastIndex = False
                                 elif(flag == 10):
-                                        print (((ord(temp) << 8) + ord(word))),
+                                        #print (((ord(temp) << 8) + ord(word))),
                                         packet.append(((ord(temp) << 8) + ord(word)))
                                         temp = ""
                                         flag = 0
                                 else:
-                                        print (((ord(temp) << 8) + ord(word))),
+                                        #print (((ord(temp) << 8) + ord(word))),
                                         packet.append(((ord(temp) << 8) + ord(word)))
         				temp = ""
 
 start_new_thread(parser,())
 
 while True:
+	time.sleep(0.1)
 	if(q.empty() == False):
+                log = open('aLog.txt','a')
 		packet = q.get()
 		#print len(packet)
-		log.write(str(len(packet)))
+                log.write(str(time.time() - start) + "\n")
+		log.write(str(len(packet)) + "\n")
 		#print packet
-		log.write(str(packet))
+		log.write(str(packet) + "\n")
+		log.close()
