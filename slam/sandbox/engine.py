@@ -65,8 +65,9 @@ def main():
            if seed \
            else Deterministic_SLAM(MinesLaser(), MAP_SIZE_PIXELS, MAP_SIZE_METERS)
     trajectory = []
-    while dequeueCount < 100:
-        if q.empty() == False:
+    while dequeueCount < 1000:
+        time.sleep(10)
+	if q.empty() == False:
             while (q.empty() == False):
                     slam.update(q.get())
                     print "%i" %dequeueCount
