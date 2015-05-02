@@ -94,7 +94,8 @@ def main():
             # Save map and trajectory as PNG file
             image = Image.frombuffer('L', (MAP_SIZE_PIXELS, MAP_SIZE_PIXELS), mapbytes, 'raw', 'L', 0, 1)
             #image.save('map%i.png' %runCount)
-            image.save("map" + str(dequeueCount) + ".png")
+            #image.save("/home/card/webgui/images/" + "map" + str(dequeueCount) + ".png")
+            image.save("/home/card/webgui/images/" + "map" + ".png")
             print "image generated"
         
             
