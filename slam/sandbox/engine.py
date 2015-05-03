@@ -40,8 +40,8 @@ Change log:
 '''
 
 # Map size, scale
-MAP_SIZE_PIXELS          = 800
-MAP_SIZE_METERS          =  8
+MAP_SIZE_PIXELS          = 1600
+MAP_SIZE_METERS          =  32
 
 from breezyslam.algorithms import Deterministic_SLAM, RMHC_SLAM
 from breezyslam.components import Laser
@@ -70,7 +70,7 @@ def main():
 	if q.empty() == False:
             while (q.empty() == False):
                     slam.update(q.get())
-                    print "%i" %dequeueCount
+                    #print "%i" %dequeueCount
                     dequeueCount = dequeueCount + 1
                     x_mm, y_mm, theta_degrees = slam.getpos()    
                     trajectory.append((x_mm, y_mm))
@@ -96,7 +96,7 @@ def main():
             #image.save('map%i.png' %runCount)
             #image.save("/home/card/webgui/images/" + "map" + str(dequeueCount) + ".png")
             image.save("/home/card/webgui/images/" + "map" + ".png")
-            print "image generated"
+            #print "image generated"
         
             
 # Helpers ---------------------------------------------------------        
