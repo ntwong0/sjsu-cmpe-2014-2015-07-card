@@ -8,7 +8,9 @@ from getpid import getpid
 
 time_start = time.time()
 
-pid = getpid("python infinloop.py")
+targetProcess = "node server.js"
+
+pid = getpid(targetProcess)
 
 while True:
     time.sleep(random.randint(1,5))
@@ -26,14 +28,17 @@ while True:
     image.save("images/map.png")
 
     if pid == False:
-        print "failure: couldn't send our signal to the server"
-        pid = getpid("python infinloop.py")
+        print "failure: we couldn't send our signal to the server"
+        pid = getpid(targetProcess)
     else:
         try:
-            os.kill(int(pid),signal.SIGRTMIN)
-            print "success: sent an update signal to the server"
+            #print "the following line did not work"
+            #print "os.kill(int(pid),signal.SIGRTMIN)"
+            #suspect SIGRTMIN is too fast for node to handle
+            os.kill(int(pid),signal.SIGTERM)
+            print "success: we sent an update signal to the server"
         except OSError:
-            print "failure: couldn't send our signal to the server"
-            pid = getpid('python infinloop.py')
+            print "failure: we couldn't send our signal to the server"
+            pid = getpid(targetProcess)
 
     print "map created after {}".format(time.time() - time_start)

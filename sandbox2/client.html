@@ -1,9 +1,37 @@
-<html>
+<html ng-app="cardGUIApp">
 <head>
+<!--
 	<meta http-equiv="refresh" content="1">
-	<title>CARD SLAM GUI</title>
+-->
+	<title>CARD GUI</title>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 </head>
-<body>
-<img src="/map.png">
+<body ng-controller="cardGUICtrl">
+<!--
+<ul class="gui">
+	<img ng-src="{{gui.imageUrl}}">
+</ul>
+-->
+
+<img id="slamMap" src="/map.png">
+
+<script type="text/javascript">
+	var socket = io();
+
+	socket.on('update', function(update){
+		var date = new Date();
+		var hours = date.getHours();
+		hours = (hours < 10 ? "0" : "") + hours;
+		var minutes = date.getMinutes();
+		minutes = (minutes < 10 ? "0" : "") + minutes;
+		var seconds = date.getSeconds();
+		seconds = (seconds < 10 ? "0" : "") + seconds;
+		var time = "" + hours + ":" + minutes + ":" + seconds
+		document.title = "time is " + hours + ":" + minutes + ":" + seconds;
+		document.getElementById("slamMap").src = "/map.png" + "?t=" + time;
+	});
+
+</script>
+
 </body>
 </html>
