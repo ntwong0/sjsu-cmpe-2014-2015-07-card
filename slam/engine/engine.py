@@ -34,6 +34,7 @@ from getpid import getpid
 from PIL import Image
 
 def main():
+    print "initiating engine..."
     seed = 9999
     dequeueCount = 0
     time_start = time.time()
