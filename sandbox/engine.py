@@ -13,7 +13,7 @@ targetProcess = "node server.js"
 pid = getpid(targetProcess)
 
 while True:
-    time.sleep(random.randint(1,5))
+   # time.sleep(random.randint(1,5))
     mapbytes = bytearray(MAP_SIZE_PIXELS * MAP_SIZE_PIXELS)
 
     for count in range(0,MAP_SIZE_PIXELS*MAP_SIZE_PIXELS):
@@ -35,7 +35,7 @@ while True:
             #print "the following line did not work"
             #print "os.kill(int(pid),signal.SIGRTMIN)"
             #suspect SIGRTMIN is too fast for node to handle
-            os.kill(int(pid),signal.SIGTERM)
+            os.kill(int(pid),signal.SIGUSR1)
             print "success: we sent an update signal to the server"
         except OSError:
             print "failure: we couldn't send our signal to the server"

@@ -3,7 +3,7 @@ import Queue
 import serial
 import time 
 
-start = time.time()
+#start = time.time()
 q = Queue.Queue(2048)
 
 def parser():
@@ -14,12 +14,15 @@ def parser():
         lookAhead = 0
         packet = []
 
-        ser = serial.Serial('/dev/ttyMFD1', 921600)
-        #ser = open('testingSerialLog.txt', 'r')
+        #ser = serial.Serial('/dev/ttyMFD1', 921600)
+        ser = open('testingSerialLog.txt', 'r')
 
         while True:
                 word = ser.read(1)
-                if(word == '\xfa' and flag == 0):
+                if(len(word) == 0):
+                        ()
+                
+                elif(word == '\xfa' and flag == 0):
                         flag = flag + 1
 
                 elif((ord(word) in range(160,250)) and flag == 1):
